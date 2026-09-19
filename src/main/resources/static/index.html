@@ -814,7 +814,7 @@ desc.oninput = function () {
    STATUS
 ================================ */
 
-function msg(t, ok) {
+/*function msg(t, ok) {
 
     status.textContent = t;
 
@@ -822,7 +822,17 @@ function msg(t, ok) {
         "status " +
         (ok ? "success" : "error");
 
-}
+}*/
+
+    function msg(t, ok) {
+    status.textContent = t;
+    status.className = "status " + (ok ? "success" : "error");
+
+    status.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+    }
 
 
 /* ================================
