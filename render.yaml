@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: shahrukh-auto-care-admin
+    name: carfixhub
     runtime: docker
     plan: free
     healthCheckPath: /api/health
