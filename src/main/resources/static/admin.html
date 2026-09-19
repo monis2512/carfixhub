@@ -196,13 +196,30 @@
         }
 
         .description {
-            background: #f7f7f7;
-            padding: 13px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.description .label {
+    display: block;
+    color: #555;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.description-text {
+    background: #fafafa;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    padding: 14px;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
 
         .actions {
             display: flex;
@@ -848,13 +865,15 @@ async function logout() {
 
                         <div class="description">
 
-                            <span class="label">
-                                Customer Description
-                            </span>
+    <span class="label">
+        Customer Description
+    </span>
 
-                            ${escapeHtml(q.description)}
+    <div class="description-text">
+        ${escapeHtml(q.description)}
+    </div>
 
-                        </div>
+</div>
 
 
                         ${
