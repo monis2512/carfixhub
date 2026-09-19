@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shahrukh Auto Care - Admin</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        .header {
+            background: #111;
+            color: white;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .logout-btn {
+            background: #e53935;
+            color: white;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
+        /* LOGIN */
+
+        #loginSection {
+            max-width: 400px;
+            margin: 70px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        #loginSection h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .input {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            background: #111;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .error {
+            color: #d32f2f;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        /* DASHBOARD */
+
+        #dashboardSection {
+            display: none;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .top-row h2 {
+            margin: 0;
+        }
+
+        .count-box {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            font-weight: bold;
+        }
+
+        .query-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-left: 5px solid #111;
+        }
+
+        .query-card.new {
+            border-left-color: #e53935;
+        }
+
+        .query-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .query-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .new-badge {
+            background: #e53935;
+            color: white;
+            padding: 4px 9px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .detail {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .mobile {
+            color: #0b7a33;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .call-btn {
+            background: #16833b;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .delete-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .empty {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            color: #777;
+        }
+
+        .notification {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #111;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+        }
+
+        @media (max-width: 600px) {
+
+            .header {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 17px;
+            }
+
+            .container {
+                margin: 15px auto;
+            }
+
+            .top-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .query-card {
+                padding: 16px;
+            }
+
+            .query-header {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <h1>Shahrukh Auto Care - Admin</h1>
+
+    <button
+        id="logoutBtn"
+        class="logout-btn"
+        onclick="logout()"
+        style="display:none;">
+        Logout
+    </button>
+</header>
+
+
+<!-- LOGIN -->
+
+<section id="loginSection">
+
+    <h2>Owner Login</h2>
+
+    <form onsubmit="login(event)">
+
+        <label>Username</label>
+
+        <input
+            id="username"
+            class="input"
+            type="text"
+            placeholder="Enter username"
+            required
+            autocomplete="username">
+
+        <label>Password</label>
+
+        <input
+            id="password"
+            class="input"
+            type="password"
+            placeholder="Enter password"
+            required
+            autocomplete="current-password">
+
+        <button class="login-btn" type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <div id="loginError" class="error"></div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboardSection">
+
+    <div class="container">
+
+        <div class="top-row">
+
+            <h2>Customer Enquiries</h2>
+
+            <div class="count-box">
+                Total: <span id="totalCount">0</span>
+            </div>
+
+        </div>
+
+        <div id="queriesContainer"></div>
+
+    </div>
+
+</section>
+
+
+<div id="notification" class="notification">
+    New enquiry received!
+</div>
+
+
+<script>
+
+    let previousQueryIds = new Set();
+    let firstLoad = true;
+    let pollingTimer = null;
+
+
+    /*
+     * CHECK LOGIN SESSION
+     */
+
+    async function checkSession() {
+
+        try {
+
+            const response = await fetch('/api/admin/session');
+
+            if (!response.ok) {
+                showLogin();
+                return;
+            }
+
+            const data = await response.json();
+
+            if (data.authenticated) {
+
+                showDashboard();
+
+            } else {
+
+                showLogin();
+
+            }
+
+        } catch (error) {
+
+            showLogin();
+
+        }
+    }
+
+
+    /*
+     * LOGIN
+     */
+
+    async function login(event) {
+
+        event.preventDefault();
+
+        const username =
+            document.getElementById('username').value.trim();
+
+        const password =
+            document.getElementById('password').value;
+
+        const errorElement =
+            document.getElementById('loginError');
+
+        errorElement.textContent = '';
+
+        try {
+
+            const response = await fetch('/api/admin/login', {
+
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+
+            });
+
+
+            if (response.ok) {
+
+                document.getElementById('password').value = '';
+
+                showDashboard();
+
+            } else {
+
+                errorElement.textContent =
+                    'Invalid username or password.';
+
+            }
+
+        } catch (error) {
+
+            errorElement.textContent =
+                'Unable to connect to server.';
+
+        }
+    }
+
+
+    /*
+     * LOGOUT
+     */
+
+    async function logout() {
+
+        try {
+
+            await fetch('/api/admin/logout', {
+                method: 'POST'
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+        if (pollingTimer) {
+            clearInterval(pollingTimer);
+        }
+
+        showLogin();
+    }
+
+
+    /*
+     * SHOW LOGIN
+     */
+
+    function showLogin() {
+
+        document.getElementById('loginSection').style.display =
+            'block';
+
+        document.getElementById('dashboardSection').style.display =
+            'none';
+
+        document.getElementById('logoutBtn').style.display =
+            'none';
+    }
+
+
+    /*
+     * SHOW DASHBOARD
+     */
+
+    function showDashboard() {
+
+        document.getElementById('loginSection').style.display =
+            'none';
+
+        document.getElementById('dashboardSection').style.display =
+            'block';
+
+        document.getElementById('logoutBtn').style.display =
+            'block';
+
+        loadQueries();
+
+        if (pollingTimer) {
+            clearInterval(pollingTimer);
+        }
+
+        /*
+         * Check for new enquiries every 10 seconds.
+         */
+
+        pollingTimer = setInterval(
+            loadQueries,
+            10000
+        );
+
+        /*
+         * Ask browser for notification permission.
+         */
+
+        requestNotificationPermission();
+    }
+
+
+    /*
+     * LOAD CUSTOMER ENQUIRIES
+     */
+
+    async function loadQueries() {
+
+        try {
+
+            const response =
+                await fetch('/api/admin/queries');
+
+            if (response.status === 401) {
+
+                showLogin();
+                return;
+
+            }
+
+            if (!response.ok) {
+
+                console.error(
+                    'Unable to load enquiries'
+                );
+
+                return;
+
+            }
+
+            const queries =
+                await response.json();
+
+            displayQueries(queries);
+
+        } catch (error) {
+
+            console.error(
+                'Error loading enquiries:',
+                error
+            );
+
+        }
+    }
+
+
+    /*
+     * DISPLAY ENQUIRIES
+     */
+
+    function displayQueries(queries) {
+
+        const container =
+            document.getElementById('queriesContainer');
+
+        document.getElementById('totalCount').textContent =
+            queries.length;
+
+
+        /*
+         * Detect new enquiries.
+         */
+
+        const currentIds =
+            new Set(
+                queries.map(q => q.id)
+            );
+
+
+        if (!firstLoad) {
+
+            const newQueries =
+                queries.filter(
+                    q => !previousQueryIds.has(q.id)
+                );
+
+            if (newQueries.length > 0) {
+
+                showNewEnquiryNotification(
+                    newQueries.length
+                );
+
+            }
+
+        }
+
+        previousQueryIds = currentIds;
+
+        firstLoad = false;
+
+
+        if (queries.length === 0) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    <h3>No enquiries yet</h3>
+                    <p>
+                        Customer enquiries will appear here.
+                    </p>
+                </div>
+            `;
+
+            return;
+        }
+
+
+        /*
+         * Newest enquiries first.
+         */
+
+        queries.sort(
+            (a, b) =>
+                new Date(b.createdAt) -
+                new Date(a.createdAt)
+        );
+
+
+        container.innerHTML =
+            queries.map(
+                query => createQueryCard(query)
+            ).join('');
+    }
+
+
+    /*
+     * CREATE ENQUIRY CARD
+     */
+
+    function createQueryCard(query) {
+
+        const createdDate =
+            query.createdAt
+                ? new Date(query.createdAt)
+                    .toLocaleString('en-IN')
+                : 'Unknown';
+
+
+        const mobile =
+            query.mobileNumber || 'Not provided';
+
+
+        const car =
+            query.carModel || 'Not specified';
+
+
+        const service =
+            query.serviceType || 'Not specified';
+
+
+        const description =
+            query.description || 'No description';
+
+
+        return `
+
+            <div
+                class="query-card"
+                id="query-${query.id}">
+
+                <div class="query-header">
+
+                    <h3>
+                        ${escapeHtml(car)}
+                    </h3>
+
+                    <span class="new-badge">
+                        ENQUIRY
+                    </span>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <span class="label">
+                        Service:
+                    </span>
+
+                    ${escapeHtml(service)}
+
+                </div>
+
+
+                <div class="detail">
+
+                    <span class="label">
+                        Mobile:
+                    </span>
+
+                    <a
+                        class="mobile"
+                        href="tel:${escapeHtml(mobile)}">
+
+                        ${escapeHtml(mobile)}
+
+                    </a>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <span class="label">
+                        Description:
+                    </span>
+
+                    <br>
+
+                    ${escapeHtml(description)}
+
+                </div>
+
+
+                <div class="detail">
+
+                    <span class="label">
+                        Date & Time:
+                    </span>
+
+                    ${createdDate}
+
+                </div>
+
+
+                <div class="actions">
+
+                    <a
+                        class="call-btn"
+                        href="tel:${escapeHtml(mobile)}">
+
+                        📞 Call Customer
+
+                    </a>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteQuery(${query.id})">
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+    }
+
+
+    /*
+     * DELETE ENQUIRY
+     */
+
+    async function deleteQuery(id) {
+
+        const confirmed =
+            confirm(
+                'Are you sure you want to delete this enquiry?'
+            );
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        try {
+
+            const response =
+                await fetch(
+                    '/api/admin/queries/' + id,
+                    {
+                        method: 'DELETE'
+                    }
+                );
+
+
+            if (response.ok) {
+
+                loadQueries();
+
+            } else if (response.status === 401) {
+
+                showLogin();
+
+            } else {
+
+                alert(
+                    'Unable to delete enquiry.'
+                );
+
+            }
+
+        } catch (error) {
+
+            alert(
+                'Unable to connect to server.'
+            );
+
+        }
+    }
+
+
+    /*
+     * BROWSER NOTIFICATIONS
+     */
+
+    async function requestNotificationPermission() {
+
+        if (!('Notification' in window)) {
+            return;
+        }
+
+        if (Notification.permission === 'default') {
+
+            try {
+
+                await Notification.requestPermission();
+
+            } catch (error) {
+
+                console.log(
+                    'Notification permission unavailable.'
+                );
+
+            }
+
+        }
+    }
+
+
+    function showNewEnquiryNotification(count) {
+
+        const message =
+            count === 1
+                ? 'New customer enquiry received!'
+                : count + ' new customer enquiries received!';
+
+
+        /*
+         * On-page notification.
+         */
+
+        const notification =
+            document.getElementById('notification');
+
+        notification.textContent = message;
+
+        notification.style.display = 'block';
+
+
+        setTimeout(
+            () => {
+                notification.style.display = 'none';
+            },
+            5000
+        );
+
+
+        /*
+         * Browser notification.
+         */
+
+        if (
+            'Notification' in window &&
+            Notification.permission === 'granted'
+        ) {
+
+            try {
+
+                new Notification(
+                    'Shahrukh Auto Care',
+                    {
+                        body: message
+                    }
+                );
+
+            } catch (error) {
+
+                console.log(
+                    'Browser notification failed.'
+                );
+
+            }
+
+        }
+    }
+
+
+    /*
+     * SECURITY:
+     * Escape customer-entered text before putting it into HTML.
+     */
+
+    function escapeHtml(value) {
+
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+
+    /*
+     * START
+     */
+
+    checkSession();
+
+</script>
+
+</body>
+</html>
