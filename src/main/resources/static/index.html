@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shahrukh Auto Care</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#0b0d10;color:#fff}.hero{padding:55px 20px;text-align:center;background:linear-gradient(#0008,#000d),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=85') center/cover}.hero h1{font-size:clamp(36px,9vw,60px);margin:15px 0}.hero p{color:#ddd;line-height:1.6}.wrap{max-width:680px;margin:-30px auto 40px;padding:0 12px}.card{background:#15181d;border:1px solid #292e35;border-radius:20px;padding:22px}.field{margin:18px 0}label{display:block;margin-bottom:8px;font-weight:bold;color:#ddd}select,input,textarea{width:100%;padding:14px;border-radius:11px;border:1px solid #343a42;background:#0f1216;color:#fff;font-size:15px}textarea{min-height:120px}.services{display:grid;grid-template-columns:1fr 1fr;gap:9px}.service{padding:13px;border:1px solid #343a42;border-radius:11px;background:#101318;color:#ddd;font-weight:bold}.service.active{background:#fff;color:#111}.submit{width:100%;padding:16px;border:0;border-radius:12px;background:#fff;color:#111;font-size:16px;font-weight:bold}.status{display:none;padding:13px;border-radius:11px;margin:12px 0}.success{display:block;background:#12351f;color:#b8f5ca}.error{display:block;background:#391619;color:#ffb9be}.contact{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.contact a{padding:13px;border:1px solid #333;border-radius:11px;color:#fff;text-decoration:none;text-align:center}.counter{text-align:right;color:#777;font-size:12px}
+
+.admin-login{
+  position:fixed;
+  top:16px;
+  right:16px;
+  z-index:20;
+  text-decoration:none;
+  color:#fff;
+  background:rgba(20,20,20,.72);
+  border:1px solid rgba(255,255,255,.25);
+  padding:9px 14px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+  backdrop-filter:blur(8px);
+}
+.admin-login:hover{background:#111;color:#fff}
+@media(max-width:600px){
+  .admin-login{top:10px;right:10px;padding:8px 11px;font-size:11px}
+}
+</style></head><body><a class="admin-login" href="/admin.html">Admin Login</a>
+<section class="hero"><h1>Shahrukh Auto Care</h1><p>Denting • Painting • Scratch Repair<br>Tell us what needs to be fixed.</p></section>
+<div class="wrap"><div class="card"><h2>Get a Repair Enquiry</h2><div id="status" class="status"></div>
+<div class="field"><label>Car</label><select id="car"><option value="">Choose your car</option><option>Maruti Swift</option><option>Maruti Baleno</option><option>Maruti Brezza</option><option>Maruti Dzire</option><option>Hyundai Creta</option><option>Hyundai Venue</option><option>Hyundai i20</option><option>Hyundai Verna</option><option>Tata Nexon</option><option>Tata Punch</option><option>Tata Harrier</option><option>Mahindra Thar</option><option>Mahindra Scorpio</option><option>Mahindra XUV700</option><option>Toyota Fortuner</option><option>Toyota Innova Crysta</option><option>Honda City</option><option>Honda Amaze</option><option>Other / Different Car</option></select></div>
+<div class="field"><label>Service Required</label><div class="services"><button class="service" data-s="Denting">🔨 Denting</button><button class="service" data-s="Painting">🎨 Painting</button><button class="service" data-s="Scratch Repair">✨ Scratch Repair</button><button class="service" data-s="Denting & Painting">🚗 Both</button></div></div>
+<div class="field"><label>Mobile Number *</label><input id="mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></div>
+<div class="field"><label>Describe the damage *</label><textarea id="desc" maxlength="1000" placeholder="Example: Front bumper has a dent..."></textarea><div class="counter"><span id="cnt">0</span>/1000</div></div>
+<div class="field"><label>Damage Photo (Optional)</label><input id="photo" type="file" accept="image/*"></div>
+<button class="submit" id="send">Send Enquiry</button>
+<div class="contact"><a href="tel:+918979111277">📞 Call</a><a href="https://wa.me/918979111277" target="_blank">💬 WhatsApp</a></div>
+<p style="text-align:center;color:#999;font-size:13px;line-height:1.6">Khanalampura, opposite Dr Shamshad, Saharanpur - 247001</p>
+</div></div>
+<script>
+let service="";document.querySelectorAll(".service").forEach(b=>b.onclick=e=>{e.preventDefault();document.querySelectorAll(".service").forEach(x=>x.classList.remove("active"));b.classList.add("active");service=b.dataset.s});desc.oninput=()=>cnt.textContent=desc.value.length;
+function msg(t,ok){status.textContent=t;status.className="status "+(ok?"success":"error")}
+send.onclick=async()=>{let c=car.value,m=mobile.value.trim(),d=desc.value.trim(),p=photo.files[0];if(!c)return msg("Please select your car.",0);if(!service)return msg("Please select a service.",0);if(!/^[6-9]\d{9}$/.test(m))return msg("Please enter a valid 10-digit Indian mobile number.",0);if(!d)return msg("Please describe the damage.",0);send.disabled=true;send.textContent="Sending...";
+try{let r=await fetch("/api/queries",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({carModel:c,serviceType:service,mobileNumber:m,description:d,photoName:p?p.name:""})});let x=await r.json();if(!r.ok)throw Error(x.message||"Unable to submit enquiry");msg("✓ Enquiry submitted successfully. We will contact you soon.",1);car.value="";mobile.value="";desc.value="";photo.value="";cnt.textContent="0";document.querySelectorAll(".service").forEach(x=>x.classList.remove("active"));service=""}catch(e){msg(e.message,0)}finally{send.disabled=false;send.textContent="Send Enquiry"}};
+</script></body></html>
