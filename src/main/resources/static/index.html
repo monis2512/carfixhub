@@ -1,43 +1,1120 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Shahrukh Auto Care</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#0b0d10;color:#fff}.hero{padding:55px 20px;text-align:center;background:linear-gradient(#0008,#000d),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=85') center/cover}.hero h1{font-size:clamp(36px,9vw,60px);margin:15px 0}.hero p{color:#ddd;line-height:1.6}.wrap{max-width:680px;margin:-30px auto 40px;padding:0 12px}.card{background:#15181d;border:1px solid #292e35;border-radius:20px;padding:22px}.field{margin:18px 0}label{display:block;margin-bottom:8px;font-weight:bold;color:#ddd}select,input,textarea{width:100%;padding:14px;border-radius:11px;border:1px solid #343a42;background:#0f1216;color:#fff;font-size:15px}textarea{min-height:120px}.services{display:grid;grid-template-columns:1fr 1fr;gap:9px}.service{padding:13px;border:1px solid #343a42;border-radius:11px;background:#101318;color:#ddd;font-weight:bold}.service.active{background:#fff;color:#111}.submit{width:100%;padding:16px;border:0;border-radius:12px;background:#fff;color:#111;font-size:16px;font-weight:bold}.status{display:none;padding:13px;border-radius:11px;margin:12px 0}.success{display:block;background:#12351f;color:#b8f5ca}.error{display:block;background:#391619;color:#ffb9be}.contact{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.contact a{padding:13px;border:1px solid #333;border-radius:11px;color:#fff;text-decoration:none;text-align:center}.counter{text-align:right;color:#777;font-size:12px}
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0b0d10;
+    color:#fff
+}
+
+.hero{
+    padding:55px 20px;
+    text-align:center;
+    background:
+        linear-gradient(#0008,#000d),
+        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=85')
+        center/cover
+}
+
+.hero h1{
+    font-size:clamp(36px,9vw,60px);
+    margin:15px 0
+}
+
+.hero p{
+    color:#ddd;
+    line-height:1.6
+}
+
+.wrap{
+    max-width:680px;
+    margin:-30px auto 40px;
+    padding:0 12px
+}
+
+.card{
+    background:#15181d;
+    border:1px solid #292e35;
+    border-radius:20px;
+    padding:22px
+}
+
+.field{
+    margin:18px 0
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#ddd
+}
+
+select,
+input,
+textarea{
+    width:100%;
+    padding:14px;
+    border-radius:11px;
+    border:1px solid #343a42;
+    background:#0f1216;
+    color:#fff;
+    font-size:15px
+}
+
+select:disabled{
+    opacity:.55;
+    cursor:not-allowed
+}
+
+textarea{
+    min-height:120px
+}
+
+.services{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px
+}
+
+.service{
+    padding:13px;
+    border:1px solid #343a42;
+    border-radius:11px;
+    background:#101318;
+    color:#ddd;
+    font-weight:bold
+}
+
+.service.active{
+    background:#fff;
+    color:#111
+}
+
+.submit{
+    width:100%;
+    padding:16px;
+    border:0;
+    border-radius:12px;
+    background:#fff;
+    color:#111;
+    font-size:16px;
+    font-weight:bold
+}
+
+.status{
+    display:none;
+    padding:13px;
+    border-radius:11px;
+    margin:12px 0
+}
+
+.success{
+    display:block;
+    background:#12351f;
+    color:#b8f5ca
+}
+
+.error{
+    display:block;
+    background:#391619;
+    color:#ffb9be
+}
+
+.contact{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:12px
+}
+
+.contact a{
+    padding:13px;
+    border:1px solid #333;
+    border-radius:11px;
+    color:#fff;
+    text-decoration:none;
+    text-align:center
+}
+
+.counter{
+    text-align:right;
+    color:#777;
+    font-size:12px
+}
 
 .admin-login{
-  position:fixed;
-  top:16px;
-  right:16px;
-  z-index:20;
-  text-decoration:none;
-  color:#fff;
-  background:rgba(20,20,20,.72);
-  border:1px solid rgba(255,255,255,.25);
-  padding:9px 14px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:700;
-  backdrop-filter:blur(8px);
+    position:fixed;
+    top:16px;
+    right:16px;
+    z-index:20;
+    text-decoration:none;
+    color:#fff;
+    background:rgba(20,20,20,.72);
+    border:1px solid rgba(255,255,255,.25);
+    padding:9px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    backdrop-filter:blur(8px)
 }
-.admin-login:hover{background:#111;color:#fff}
+
+.admin-login:hover{
+    background:#111;
+    color:#fff
+}
+
 @media(max-width:600px){
-  .admin-login{top:10px;right:10px;padding:8px 11px;font-size:11px}
+
+    .admin-login{
+        top:10px;
+        right:10px;
+        padding:8px 11px;
+        font-size:11px
+    }
+
+    .services{
+        grid-template-columns:1fr
+    }
 }
-</style></head><body><a class="admin-login" href="/admin.html">Admin Login</a>
-<section class="hero"><h1>Shahrukh Auto Care</h1><p>Denting • Painting • Scratch Repair<br>Tell us what needs to be fixed.</p></section>
-<div class="wrap"><div class="card"><h2>Get a Repair Enquiry</h2><div id="status" class="status"></div>
-<div class="field"><label>Car</label><select id="car"><option value="">Choose your car</option><option>Maruti Swift</option><option>Maruti Baleno</option><option>Maruti Brezza</option><option>Maruti Dzire</option><option>Hyundai Creta</option><option>Hyundai Venue</option><option>Hyundai i20</option><option>Hyundai Verna</option><option>Tata Nexon</option><option>Tata Punch</option><option>Tata Harrier</option><option>Mahindra Thar</option><option>Mahindra Scorpio</option><option>Mahindra XUV700</option><option>Toyota Fortuner</option><option>Toyota Innova Crysta</option><option>Honda City</option><option>Honda Amaze</option><option>Other / Different Car</option></select></div>
-<div class="field"><label>Service Required</label><div class="services"><button class="service" data-s="Denting">🔨 Denting</button><button class="service" data-s="Painting">🎨 Painting</button><button class="service" data-s="Scratch Repair">✨ Scratch Repair</button><button class="service" data-s="Denting & Painting">🚗 Both</button></div></div>
-<div class="field"><label>Mobile Number *</label><input id="mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></div>
-<div class="field"><label>Describe the damage *</label><textarea id="desc" maxlength="1000" placeholder="Example: Front bumper has a dent..."></textarea><div class="counter"><span id="cnt">0</span>/1000</div></div>
-<div class="field"><label>Damage Photo (Optional)</label><input id="photo" type="file" accept="image/*"></div>
-<button class="submit" id="send">Send Enquiry</button>
-<div class="contact"><a href="tel:+918979111277">📞 Call</a><a href="https://wa.me/918979111277" target="_blank">💬 WhatsApp</a></div>
-<p style="text-align:center;color:#999;font-size:13px;line-height:1.6">Khanalampura, opposite Dr Shamshad, Saharanpur - 247001</p>
-</div></div>
+</style>
+</head>
+
+<body>
+
+<a class="admin-login" href="/admin.html">
+    Admin Login
+</a>
+
+<section class="hero">
+
+    <h1>Shahrukh Auto Care</h1>
+
+    <p>
+        Denting • Painting • Scratch Repair<br>
+        Tell us what needs to be fixed.
+    </p>
+
+</section>
+
+
+<div class="wrap">
+
+<div class="card">
+
+    <h2>Get a Repair Enquiry</h2>
+
+    <div id="status" class="status"></div>
+
+
+    <!-- CAR BRAND -->
+    <div class="field">
+
+        <label for="carBrand">
+            Car Brand
+        </label>
+
+        <select id="carBrand">
+
+            <option value="">
+                Choose car brand
+            </option>
+
+            <option value="Maruti Suzuki">Maruti Suzuki</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Tata">Tata</option>
+            <option value="Mahindra">Mahindra</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Kia">Kia</option>
+            <option value="MG">MG Motor</option>
+            <option value="Renault">Renault</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Skoda">Skoda</option>
+            <option value="Jeep">Jeep</option>
+            <option value="Citroen">Citroen</option>
+            <option value="BYD">BYD</option>
+            <option value="VinFast">VinFast</option>
+            <option value="Isuzu">Isuzu</option>
+
+            <option value="BMW">BMW</option>
+            <option value="Mercedes-Benz">Mercedes-Benz</option>
+            <option value="Audi">Audi</option>
+            <option value="Volvo">Volvo</option>
+            <option value="Jaguar">Jaguar</option>
+            <option value="Land Rover">Land Rover</option>
+            <option value="Lexus">Lexus</option>
+            <option value="Porsche">Porsche</option>
+            <option value="MINI">MINI</option>
+            <option value="Lamborghini">Lamborghini</option>
+            <option value="Ferrari">Ferrari</option>
+            <option value="Rolls-Royce">Rolls-Royce</option>
+            <option value="Bentley">Bentley</option>
+            <option value="Aston Martin">Aston Martin</option>
+            <option value="Maserati">Maserati</option>
+            <option value="Tesla">Tesla</option>
+
+            <option value="Other">
+                Other / Different Brand
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- CAR MODEL -->
+    <div class="field">
+
+        <label for="carModel">
+            Car Model
+        </label>
+
+        <select id="carModel" disabled>
+
+            <option value="">
+                First choose car brand
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- SERVICE -->
+    <div class="field">
+
+        <label>
+            Service Required
+        </label>
+
+        <div class="services">
+
+            <button class="service" data-s="Denting">
+                🔨 Denting
+            </button>
+
+            <button class="service" data-s="Painting">
+                🎨 Painting
+            </button>
+
+            <button class="service" data-s="Scratch Repair">
+                ✨ Scratch Repair
+            </button>
+
+            <button class="service" data-s="Denting & Painting">
+                🚗 Both
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- MOBILE -->
+    <div class="field">
+
+        <label for="mobile">
+            Mobile Number *
+        </label>
+
+        <input
+            id="mobile"
+            type="tel"
+            inputmode="numeric"
+            maxlength="10"
+            placeholder="10-digit mobile number"
+        >
+
+    </div>
+
+
+    <!-- DESCRIPTION -->
+    <div class="field">
+
+        <label for="desc">
+            Describe the damage *
+        </label>
+
+        <textarea
+            id="desc"
+            maxlength="1000"
+            placeholder="Example: Front bumper has a dent..."
+        ></textarea>
+
+        <div class="counter">
+            <span id="cnt">0</span>/1000
+        </div>
+
+    </div>
+
+
+    <!-- PHOTO -->
+    <div class="field">
+
+        <label for="photo">
+            Damage Photo (Optional)
+        </label>
+
+        <input
+            id="photo"
+            type="file"
+            accept="image/*"
+        >
+
+    </div>
+
+
+    <button class="submit" id="send">
+        Send Enquiry
+    </button>
+
+
+    <div class="contact">
+
+        <a href="tel:+918979111277">
+            📞 Call
+        </a>
+
+        <a
+            href="https://wa.me/918979111277"
+            target="_blank"
+        >
+            💬 WhatsApp
+        </a>
+
+    </div>
+
+
+    <p style="text-align:center;color:#999;font-size:13px;line-height:1.6">
+
+        Khanalampura, opposite Dr Shamshad,
+        Saharanpur - 247001
+
+    </p>
+
+</div>
+</div>
+
+
 <script>
-let service="";document.querySelectorAll(".service").forEach(b=>b.onclick=e=>{e.preventDefault();document.querySelectorAll(".service").forEach(x=>x.classList.remove("active"));b.classList.add("active");service=b.dataset.s});desc.oninput=()=>cnt.textContent=desc.value.length;
-function msg(t,ok){status.textContent=t;status.className="status "+(ok?"success":"error")}
-send.onclick=async()=>{let c=car.value,m=mobile.value.trim(),d=desc.value.trim(),p=photo.files[0];if(!c)return msg("Please select your car.",0);if(!service)return msg("Please select a service.",0);if(!/^[6-9]\d{9}$/.test(m))return msg("Please enter a valid 10-digit Indian mobile number.",0);if(!d)return msg("Please describe the damage.",0);send.disabled=true;send.textContent="Sending...";
-try{let r=await fetch("/api/queries",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({carModel:c,serviceType:service,mobileNumber:m,description:d,photoName:p?p.name:""})});let x=await r.json();if(!r.ok)throw Error(x.message||"Unable to submit enquiry");msg("✓ Enquiry submitted successfully. We will contact you soon.",1);car.value="";mobile.value="";desc.value="";photo.value="";cnt.textContent="0";document.querySelectorAll(".service").forEach(x=>x.classList.remove("active"));service=""}catch(e){msg(e.message,0)}finally{send.disabled=false;send.textContent="Send Enquiry"}};
-</script></body></html>
+
+let service = "";
+
+
+/* ================================
+   CAR BRAND → MODELS
+================================ */
+
+const carModels = {
+
+    "Maruti Suzuki": [
+        "Alto K10",
+        "S-Presso",
+        "Celerio",
+        "WagonR",
+        "Swift",
+        "Dzire",
+        "Baleno",
+        "Fronx",
+        "Brezza",
+        "Grand Vitara",
+        "Ertiga",
+        "XL6",
+        "Invicto",
+        "Jimny",
+        "Ignis",
+        "Eeco"
+    ],
+
+    "Hyundai": [
+        "Grand i10 Nios",
+        "i20",
+        "i20 N Line",
+        "Aura",
+        "Exter",
+        "Venue",
+        "Venue N Line",
+        "Creta",
+        "Creta Electric",
+        "Verna",
+        "Alcazar",
+        "Tucson"
+    ],
+
+    "Tata": [
+        "Tiago",
+        "Tiago EV",
+        "Tigor",
+        "Tigor EV",
+        "Altroz",
+        "Altroz EV",
+        "Punch",
+        "Punch EV",
+        "Nexon",
+        "Nexon EV",
+        "Curvv",
+        "Curvv EV",
+        "Harrier",
+        "Harrier EV",
+        "Safari",
+        "Sierra"
+    ],
+
+    "Mahindra": [
+        "Bolero",
+        "Bolero Neo",
+        "Thar",
+        "Thar Roxx",
+        "Scorpio Classic",
+        "Scorpio N",
+        "XUV 3XO",
+        "XUV 7XO",
+        "XUV700",
+        "Marazzo",
+        "BE 6",
+        "XEV 9e",
+        "XEV 9S"
+    ],
+
+    "Toyota": [
+        "Glanza",
+        "Urban Cruiser Taisor",
+        "Urban Cruiser Hyryder",
+        "Rumion",
+        "Innova Crysta",
+        "Innova Hycross",
+        "Fortuner",
+        "Fortuner Legender",
+        "Hilux",
+        "Camry",
+        "Vellfire",
+        "Land Cruiser 300"
+    ],
+
+    "Honda": [
+        "Amaze",
+        "City",
+        "Elevate"
+    ],
+
+    "Kia": [
+        "Sonet",
+        "Seltos",
+        "Carens",
+        "Carens Clavis",
+        "Syros",
+        "Carnival",
+        "Sorento"
+    ],
+
+    "MG": [
+        "Comet EV",
+        "Windsor EV",
+        "Astor",
+        "Hector",
+        "Hector Plus",
+        "ZS EV",
+        "Gloster",
+        "Majestor"
+    ],
+
+    "Renault": [
+        "Kwid",
+        "Triber",
+        "Kiger",
+        "Duster"
+    ],
+
+    "Nissan": [
+        "Magnite",
+        "X-Trail"
+    ],
+
+    "Volkswagen": [
+        "Polo",
+        "Virtus",
+        "Taigun",
+        "Tiguan",
+        "T-Roc"
+    ],
+
+    "Skoda": [
+        "Kylaq",
+        "Kushaq",
+        "Slavia",
+        "Kodiaq",
+        "Superb",
+        "Octavia"
+    ],
+
+    "Jeep": [
+        "Compass",
+        "Meridian",
+        "Wrangler",
+        "Grand Cherokee"
+    ],
+
+    "Citroen": [
+        "C3",
+        "e-C3",
+        "C3 Aircross",
+        "C3 Aircross X",
+        "C5 Aircross",
+        "Basalt",
+        "Basalt X"
+    ],
+
+    "BYD": [
+        "Atto 3",
+        "Seal",
+        "eMAX 7",
+        "Sealion 7",
+        "Sealion 6",
+        "Yangwang U8"
+    ],
+
+    "VinFast": [
+        "VF6",
+        "VF7",
+        "VF8",
+        "VF9"
+    ],
+
+    "Isuzu": [
+        "D-Max",
+        "MU-X"
+    ],
+
+    "BMW": [
+        "2 Series",
+        "3 Series",
+        "5 Series",
+        "7 Series",
+        "X1",
+        "X3",
+        "X5",
+        "X7",
+        "i4",
+        "i5",
+        "i7",
+        "iX",
+        "XM"
+    ],
+
+    "Mercedes-Benz": [
+        "A-Class",
+        "C-Class",
+        "E-Class",
+        "S-Class",
+        "GLA",
+        "GLB",
+        "GLC",
+        "GLE",
+        "GLS",
+        "EQS",
+        "EQE",
+        "V-Class",
+        "Maybach S-Class",
+        "Maybach GLS"
+    ],
+
+    "Audi": [
+        "A4",
+        "A6",
+        "A8 L",
+        "Q3",
+        "Q5",
+        "Q7",
+        "Q8",
+        "Q8 e-tron",
+        "e-tron GT"
+    ],
+
+    "Volvo": [
+        "XC40",
+        "XC60",
+        "XC90",
+        "EX30",
+        "EX40",
+        "EX90",
+        "S90"
+    ],
+
+    "Jaguar": [
+        "F-Pace",
+        "F-Type",
+        "I-Pace",
+        "XF"
+    ],
+
+    "Land Rover": [
+        "Defender",
+        "Discovery",
+        "Discovery Sport",
+        "Range Rover",
+        "Range Rover Sport",
+        "Range Rover Velar",
+        "Range Rover Evoque"
+    ],
+
+    "Lexus": [
+        "ES",
+        "LM",
+        "LS",
+        "NX",
+        "RX",
+        "LX",
+        "LC"
+    ],
+
+    "Porsche": [
+        "718 Cayman",
+        "718 Boxster",
+        "911",
+        "Macan",
+        "Cayenne",
+        "Panamera",
+        "Taycan"
+    ],
+
+    "MINI": [
+        "Cooper",
+        "Countryman",
+        "Cooper S"
+    ],
+
+    "Lamborghini": [
+        "Urus",
+        "Revuelto",
+        "Huracan"
+    ],
+
+    "Ferrari": [
+        "Roma",
+        "296 GTB",
+        "296 GTS",
+        "SF90",
+        "Purosangue"
+    ],
+
+    "Rolls-Royce": [
+        "Ghost",
+        "Phantom",
+        "Cullinan",
+        "Spectre"
+    ],
+
+    "Bentley": [
+        "Continental GT",
+        "Flying Spur",
+        "Bentayga"
+    ],
+
+    "Aston Martin": [
+        "DB12",
+        "Vanquish",
+        "Vantage",
+        "DBX"
+    ],
+
+    "Maserati": [
+        "Grecale",
+        "Levante",
+        "Ghibli",
+        "Quattroporte",
+        "GranTurismo",
+        "GranCabrio"
+    ],
+
+    "Tesla": [
+        "Model 3",
+        "Model Y"
+    ],
+
+    "Other": [
+        "Other / Different Model"
+    ]
+
+};
+
+
+/* ================================
+   BRAND CHANGE
+================================ */
+
+const carBrand =
+    document.getElementById("carBrand");
+
+const carModel =
+    document.getElementById("carModel");
+
+
+carBrand.addEventListener("change", function () {
+
+    const brand = this.value;
+
+    carModel.innerHTML = "";
+
+    if (!brand) {
+
+        carModel.disabled = true;
+
+        carModel.innerHTML =
+            '<option value="">First choose car brand</option>';
+
+        return;
+    }
+
+
+    carModel.disabled = false;
+
+
+    const firstOption =
+        document.createElement("option");
+
+    firstOption.value = "";
+
+    firstOption.textContent =
+        "Choose " + brand + " model";
+
+    carModel.appendChild(firstOption);
+
+
+    const models =
+        carModels[brand] || [
+            "Other / Different Model"
+        ];
+
+
+    models.forEach(function (model) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = model;
+
+        option.textContent = model;
+
+        carModel.appendChild(option);
+
+    });
+
+});
+
+
+/* ================================
+   SERVICE SELECTION
+================================ */
+
+document
+    .querySelectorAll(".service")
+    .forEach(function (b) {
+
+        b.onclick = function (e) {
+
+            e.preventDefault();
+
+            document
+                .querySelectorAll(".service")
+                .forEach(function (x) {
+                    x.classList.remove("active");
+                });
+
+            b.classList.add("active");
+
+            service = b.dataset.s;
+        };
+
+    });
+
+
+/* ================================
+   DESCRIPTION COUNTER
+================================ */
+
+const desc =
+    document.getElementById("desc");
+
+const cnt =
+    document.getElementById("cnt");
+
+desc.oninput = function () {
+
+    cnt.textContent =
+        desc.value.length;
+
+};
+
+
+/* ================================
+   STATUS MESSAGE
+================================ */
+
+function msg(t, ok) {
+
+    const status =
+        document.getElementById("status");
+
+    status.textContent = t;
+
+    status.className =
+        "status " + (ok ? "success" : "error");
+
+}
+
+
+/* ================================
+   SEND ENQUIRY
+================================ */
+
+document
+    .getElementById("send")
+    .onclick = async function () {
+
+        const brand =
+            carBrand.value;
+
+        const model =
+            carModel.value;
+
+        const mobile =
+            document
+                .getElementById("mobile")
+                .value
+                .trim();
+
+        const description =
+            desc.value.trim();
+
+        const photoInput =
+            document.getElementById("photo");
+
+        const photo =
+            photoInput.files[0];
+
+
+        /* Validate brand */
+
+        if (!brand) {
+
+            return msg(
+                "Please select your car brand.",
+                false
+            );
+
+        }
+
+
+        /* Validate model */
+
+        if (!model) {
+
+            return msg(
+                "Please select your car model.",
+                false
+            );
+
+        }
+
+
+        /* Validate service */
+
+        if (!service) {
+
+            return msg(
+                "Please select a service.",
+                false
+            );
+
+        }
+
+
+        /* Validate mobile */
+
+        if (!/^[6-9]\d{9}$/.test(mobile)) {
+
+            return msg(
+                "Please enter a valid 10-digit Indian mobile number.",
+                false
+            );
+
+        }
+
+
+        /* Validate description */
+
+        if (!description) {
+
+            return msg(
+                "Please describe the damage.",
+                false
+            );
+
+        }
+
+
+        const sendButton =
+            document.getElementById("send");
+
+        sendButton.disabled = true;
+
+        sendButton.textContent =
+            "Sending...";
+
+
+        try {
+
+            /*
+             * Keep the backend field name carModel.
+             *
+             * It will now contain:
+             *
+             * Maruti Suzuki - WagonR
+             */
+
+            const selectedCar =
+                brand + " - " + model;
+
+
+            const formData =
+                new FormData();
+
+            formData.append(
+                "carModel",
+                selectedCar
+            );
+
+            formData.append(
+                "serviceType",
+                service
+            );
+
+            formData.append(
+                "mobileNumber",
+                mobile
+            );
+
+            formData.append(
+                "description",
+                description
+            );
+
+
+            /*
+             * Keep photo filename behavior
+             * compatible with your current backend.
+             *
+             * Actual photo upload can be added later.
+             */
+
+            if (photo) {
+
+                formData.append(
+                    "photoName",
+                    photo.name
+                );
+
+            }
+
+
+            /*
+             * IMPORTANT:
+             *
+             * Do NOT set Content-Type manually.
+             *
+             * Browser automatically sets multipart/form-data
+             * with the required boundary.
+             */
+
+            const response =
+                await fetch(
+                    "/api/queries",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    result.message ||
+                    "Unable to submit enquiry"
+                );
+
+            }
+
+
+            msg(
+                "✓ Enquiry submitted successfully. We will contact you soon.",
+                true
+            );
+
+
+            /* Reset form */
+
+            carBrand.value = "";
+
+            carModel.innerHTML =
+                '<option value="">First choose car brand</option>';
+
+            carModel.disabled = true;
+
+            document
+                .getElementById("mobile")
+                .value = "";
+
+            desc.value = "";
+
+            photoInput.value = "";
+
+            cnt.textContent = "0";
+
+
+            document
+                .querySelectorAll(".service")
+                .forEach(function (x) {
+                    x.classList.remove("active");
+                });
+
+            service = "";
+
+
+        } catch (e) {
+
+            msg(
+                e.message,
+                false
+            );
+
+        } finally {
+
+            sendButton.disabled = false;
+
+            sendButton.textContent =
+                "Send Enquiry";
+
+        }
+
+    };
+
+</script>
+
+</body>
+</html>
