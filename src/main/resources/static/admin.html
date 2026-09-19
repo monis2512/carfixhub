@@ -566,31 +566,24 @@
     /*
      * Logout
      */
-    async function logout() {
+    
+async function logout() {
 
-        try {
-
-            await fetch("/api/admin/logout", {
-
-                method: "POST",
-
-                credentials: "same-origin"
-
-            });
-
-        } catch (error) {
-
-            console.error("Logout error:", error);
-
-        }
-
-        queries = [];
-        lastKnownId = 0;
-        firstLoad = true;
-
-        showLogin();
+    try {
+        await fetch("/api/admin/logout", {
+            method: "POST",
+            credentials: "same-origin"
+        });
+    } catch (error) {
+        console.error("Logout error:", error);
     }
 
+    queries = [];
+    lastKnownId = 0;
+    firstLoad = true;
+
+    window.location.href = "/index.html";
+}
 
     /*
      * Load enquiries
