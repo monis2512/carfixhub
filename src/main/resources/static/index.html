@@ -821,6 +821,10 @@ function msg(t, ok) {
    SUBMIT
 ================================ */
 
+/* ================================
+   SUBMIT
+================================ */
+
 send.onclick = async function () {
 
     const brand =
@@ -842,116 +846,158 @@ send.onclick = async function () {
         photo.files[0];
 
 
-    if (!brand) {
+    /* ================================
+       VALIDATION
+    ================================= */
 
+    if (!brand) {
         return msg(
             "Please select your car brand.",
             false
         );
-
     }
 
 
     if (!model) {
-
         return msg(
             "Please select your car model.",
             false
         );
-
     }
 
 
     if (!service) {
-
         return msg(
             "Please select a service.",
             false
         );
-
     }
 
 
     if (!/^[6-9]\d{9}$/.test(m)) {
-
         return msg(
             "Please enter a valid 10-digit Indian mobile number.",
             false
         );
-
     }
 
 
     if (!d) {
-
         return msg(
             "Please describe the damage.",
             false
         );
-
     }
 
 
+    /* ================================
+       PREVENT DOUBLE CLICK
+    ================================= */
+
     send.disabled = true;
 
-    send.textContent =
-        "Sending...";
+    send.textContent = "Sending...";
 
 
     try {
 
         /*
-         * IMPORTANT:
-         * This remains JSON.
-         * NO FormData.
+         * Abort the request if it takes too long.
+         * This prevents the button getting stuck
+         * on "Sending..."
          */
 
-        let r = await fetch(
-            "/api/queries",
-            {
-                method: "POST",
+        const controller =
+            new AbortController();
 
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
+        const timeout =
+            setTimeout(function () {
 
-                body: JSON.stringify({
+                controller.abort();
 
-                    carModel: c,
-
-                    serviceType:
-                        service,
-
-                    mobileNumber:
-                        m,
-
-                    description:
-                        d,
-
-                    photoName:
-                        p ? p.name : ""
-
-                })
-            }
-        );
+            }, 60000); // 60 seconds
 
 
-        let x =
-            await r.json();
+        const response =
+            await fetch(
+                "/api/queries",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    credentials: "same-origin",
+
+                    signal:
+                        controller.signal,
+
+                    body: JSON.stringify({
+
+                        carModel:
+                            c,
+
+                        serviceType:
+                            service,
+
+                        mobileNumber:
+                            m,
+
+                        description:
+                            d,
+
+                        photoName:
+                            p ? p.name : ""
+
+                    })
+                }
+            );
 
 
-        if (!r.ok) {
+        clearTimeout(timeout);
 
-            throw Error(
-                x.message ||
-                "Unable to submit enquiry"
+
+        /*
+         * Try to read JSON response.
+         */
+
+        let data = {};
+
+        try {
+
+            data =
+                await response.json();
+
+        } catch (error) {
+
+            data = {};
+
+        }
+
+
+        /*
+         * Server returned an error.
+         */
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Unable to submit enquiry. Please try again."
             );
 
         }
 
 
-        alert("Your query has been submitted successfully. You will be contacted soon.");
+        /*
+         * SUCCESS
+         */
+
+        alert(
+            "Your query has been submitted successfully. You will be contacted soon."
+        );
 
 
         /* Reset brand */
@@ -967,16 +1013,24 @@ send.onclick = async function () {
         carModel.disabled = true;
 
 
-        /* Reset other fields */
+        /* Reset mobile */
 
         mobile.value = "";
 
-        desc.value = "";
 
-        photo.value = "";
+        /* Reset description */
+
+        desc.value = "";
 
         cnt.textContent = "0";
 
+
+        /* Reset photo */
+
+        photo.value = "";
+
+
+        /* Reset service */
 
         document
         .querySelectorAll(".service")
@@ -986,18 +1040,54 @@ send.onclick = async function () {
 
         });
 
-
         service = "";
 
 
-    } catch (e) {
+        /*
+         * Clear previous status message.
+         */
 
-        msg(
-            e.message,
-            false
+        status.style.display = "none";
+
+
+    } catch (error) {
+
+        console.error(
+            "Enquiry submission error:",
+            error
         );
 
+
+        /*
+         * Special message when request times out.
+         */
+
+        if (
+            error.name === "AbortError"
+        ) {
+
+            msg(
+                "The server is taking too long to respond. Please try again.",
+                false
+            );
+
+        } else {
+
+            msg(
+                error.message ||
+                "Unable to submit enquiry. Please try again.",
+                false
+            );
+
+        }
+
     } finally {
+
+        /*
+         * IMPORTANT:
+         * Always restore the Send button,
+         * even if the request fails.
+         */
 
         send.disabled = false;
 
