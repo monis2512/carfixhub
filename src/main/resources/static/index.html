@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -72,7 +73,7 @@ textarea{
 }
 
 select:disabled{
-    opacity:.55;
+    opacity:.5;
     cursor:not-allowed
 }
 
@@ -174,16 +175,11 @@ textarea{
 }
 
 @media(max-width:600px){
-
     .admin-login{
         top:10px;
         right:10px;
         padding:8px 11px;
         font-size:11px
-    }
-
-    .services{
-        grid-template-columns:1fr
     }
 }
 </style>
@@ -196,212 +192,195 @@ textarea{
 </a>
 
 <section class="hero">
-
     <h1>Shahrukh Auto Care</h1>
-
     <p>
         Denting • Painting • Scratch Repair<br>
         Tell us what needs to be fixed.
     </p>
-
 </section>
-
 
 <div class="wrap">
 
 <div class="card">
 
-    <h2>Get a Repair Enquiry</h2>
+<h2>Get a Repair Enquiry</h2>
 
-    <div id="status" class="status"></div>
-
-
-    <!-- CAR BRAND -->
-    <div class="field">
-
-        <label for="carBrand">
-            Car Brand
-        </label>
-
-        <select id="carBrand">
-
-            <option value="">
-                Choose car brand
-            </option>
-
-            <option value="Maruti Suzuki">Maruti Suzuki</option>
-            <option value="Hyundai">Hyundai</option>
-            <option value="Tata">Tata</option>
-            <option value="Mahindra">Mahindra</option>
-            <option value="Toyota">Toyota</option>
-            <option value="Honda">Honda</option>
-            <option value="Kia">Kia</option>
-            <option value="MG">MG Motor</option>
-            <option value="Renault">Renault</option>
-            <option value="Nissan">Nissan</option>
-            <option value="Volkswagen">Volkswagen</option>
-            <option value="Skoda">Skoda</option>
-            <option value="Jeep">Jeep</option>
-            <option value="Citroen">Citroen</option>
-            <option value="BYD">BYD</option>
-            <option value="VinFast">VinFast</option>
-            <option value="Isuzu">Isuzu</option>
-
-            <option value="BMW">BMW</option>
-            <option value="Mercedes-Benz">Mercedes-Benz</option>
-            <option value="Audi">Audi</option>
-            <option value="Volvo">Volvo</option>
-            <option value="Jaguar">Jaguar</option>
-            <option value="Land Rover">Land Rover</option>
-            <option value="Lexus">Lexus</option>
-            <option value="Porsche">Porsche</option>
-            <option value="MINI">MINI</option>
-            <option value="Lamborghini">Lamborghini</option>
-            <option value="Ferrari">Ferrari</option>
-            <option value="Rolls-Royce">Rolls-Royce</option>
-            <option value="Bentley">Bentley</option>
-            <option value="Aston Martin">Aston Martin</option>
-            <option value="Maserati">Maserati</option>
-            <option value="Tesla">Tesla</option>
-
-            <option value="Other">
-                Other / Different Brand
-            </option>
-
-        </select>
-
-    </div>
+<div id="status" class="status"></div>
 
 
-    <!-- CAR MODEL -->
-    <div class="field">
+<!-- CAR BRAND -->
 
-        <label for="carModel">
-            Car Model
-        </label>
+<div class="field">
 
-        <select id="carModel" disabled>
+<label>Car Brand</label>
 
-            <option value="">
-                First choose car brand
-            </option>
+<select id="carBrand">
 
-        </select>
+<option value="">Choose car brand</option>
 
-    </div>
+<option value="Maruti Suzuki">Maruti Suzuki</option>
+<option value="Hyundai">Hyundai</option>
+<option value="Tata">Tata</option>
+<option value="Mahindra">Mahindra</option>
+<option value="Toyota">Toyota</option>
+<option value="Honda">Honda</option>
+<option value="Kia">Kia</option>
+<option value="MG Motor">MG Motor</option>
+<option value="Renault">Renault</option>
+<option value="Nissan">Nissan</option>
+<option value="Volkswagen">Volkswagen</option>
+<option value="Skoda">Skoda</option>
+<option value="Jeep">Jeep</option>
+<option value="Citroen">Citroen</option>
+<option value="BYD">BYD</option>
+<option value="VinFast">VinFast</option>
+<option value="Isuzu">Isuzu</option>
 
+<option value="BMW">BMW</option>
+<option value="Mercedes-Benz">Mercedes-Benz</option>
+<option value="Audi">Audi</option>
+<option value="Volvo">Volvo</option>
+<option value="Jaguar">Jaguar</option>
+<option value="Land Rover">Land Rover</option>
+<option value="Lexus">Lexus</option>
+<option value="Porsche">Porsche</option>
+<option value="MINI">MINI</option>
+<option value="Lamborghini">Lamborghini</option>
+<option value="Ferrari">Ferrari</option>
+<option value="Rolls-Royce">Rolls-Royce</option>
+<option value="Bentley">Bentley</option>
+<option value="Aston Martin">Aston Martin</option>
+<option value="Maserati">Maserati</option>
+<option value="Tesla">Tesla</option>
 
-    <!-- SERVICE -->
-    <div class="field">
+<option value="Other">Other / Different Brand</option>
 
-        <label>
-            Service Required
-        </label>
+</select>
 
-        <div class="services">
-
-            <button class="service" data-s="Denting">
-                🔨 Denting
-            </button>
-
-            <button class="service" data-s="Painting">
-                🎨 Painting
-            </button>
-
-            <button class="service" data-s="Scratch Repair">
-                ✨ Scratch Repair
-            </button>
-
-            <button class="service" data-s="Denting & Painting">
-                🚗 Both
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- MOBILE -->
-    <div class="field">
-
-        <label for="mobile">
-            Mobile Number *
-        </label>
-
-        <input
-            id="mobile"
-            type="tel"
-            inputmode="numeric"
-            maxlength="10"
-            placeholder="10-digit mobile number"
-        >
-
-    </div>
+</div>
 
 
-    <!-- DESCRIPTION -->
-    <div class="field">
+<!-- CAR MODEL -->
 
-        <label for="desc">
-            Describe the damage *
-        </label>
+<div class="field">
 
-        <textarea
-            id="desc"
-            maxlength="1000"
-            placeholder="Example: Front bumper has a dent..."
-        ></textarea>
+<label>Car Model</label>
 
-        <div class="counter">
-            <span id="cnt">0</span>/1000
-        </div>
+<select id="carModel" disabled>
 
-    </div>
+<option value="">
+    First choose car brand
+</option>
+
+</select>
+
+</div>
 
 
-    <!-- PHOTO -->
-    <div class="field">
+<!-- SERVICE -->
 
-        <label for="photo">
-            Damage Photo (Optional)
-        </label>
+<div class="field">
 
-        <input
-            id="photo"
-            type="file"
-            accept="image/*"
-        >
+<label>Service Required</label>
 
-    </div>
+<div class="services">
 
+<button class="service" data-s="Denting">
+    🔨 Denting
+</button>
 
-    <button class="submit" id="send">
-        Send Enquiry
-    </button>
+<button class="service" data-s="Painting">
+    🎨 Painting
+</button>
 
+<button class="service" data-s="Scratch Repair">
+    ✨ Scratch Repair
+</button>
 
-    <div class="contact">
+<button class="service" data-s="Denting & Painting">
+    🚗 Both
+</button>
 
-        <a href="tel:+918979111277">
-            📞 Call
-        </a>
+</div>
 
-        <a
-            href="https://wa.me/918979111277"
-            target="_blank"
-        >
-            💬 WhatsApp
-        </a>
-
-    </div>
+</div>
 
 
-    <p style="text-align:center;color:#999;font-size:13px;line-height:1.6">
+<!-- MOBILE -->
 
-        Khanalampura, opposite Dr Shamshad,
-        Saharanpur - 247001
+<div class="field">
 
-    </p>
+<label>Mobile Number *</label>
+
+<input
+    id="mobile"
+    type="tel"
+    inputmode="numeric"
+    maxlength="10"
+    placeholder="10-digit mobile number"
+>
+
+</div>
+
+
+<!-- DESCRIPTION -->
+
+<div class="field">
+
+<label>Describe the damage *</label>
+
+<textarea
+    id="desc"
+    maxlength="1000"
+    placeholder="Example: Front bumper has a dent..."
+></textarea>
+
+<div class="counter">
+    <span id="cnt">0</span>/1000
+</div>
+
+</div>
+
+
+<!-- PHOTO -->
+
+<div class="field">
+
+<label>Damage Photo (Optional)</label>
+
+<input
+    id="photo"
+    type="file"
+    accept="image/*"
+>
+
+</div>
+
+
+<button class="submit" id="send">
+    Send Enquiry
+</button>
+
+
+<div class="contact">
+
+<a href="tel:+918979111277">
+    📞 Call
+</a>
+
+<a
+    href="https://wa.me/918979111277"
+    target="_blank"
+>
+    💬 WhatsApp
+</a>
+
+</div>
+
+
+<p style="text-align:center;color:#999;font-size:13px;line-height:1.6">
+    Khanalampura, opposite Dr Shamshad, Saharanpur - 247001
+</p>
 
 </div>
 </div>
@@ -413,7 +392,7 @@ let service = "";
 
 
 /* ================================
-   CAR BRAND → MODELS
+   CAR MODELS
 ================================ */
 
 const carModels = {
@@ -458,7 +437,6 @@ const carModels = {
         "Tigor",
         "Tigor EV",
         "Altroz",
-        "Altroz EV",
         "Punch",
         "Punch EV",
         "Nexon",
@@ -467,8 +445,7 @@ const carModels = {
         "Curvv EV",
         "Harrier",
         "Harrier EV",
-        "Safari",
-        "Sierra"
+        "Safari"
     ],
 
     "Mahindra": [
@@ -479,12 +456,10 @@ const carModels = {
         "Scorpio Classic",
         "Scorpio N",
         "XUV 3XO",
-        "XUV 7XO",
         "XUV700",
         "Marazzo",
         "BE 6",
-        "XEV 9e",
-        "XEV 9S"
+        "XEV 9e"
     ],
 
     "Toyota": [
@@ -514,26 +489,23 @@ const carModels = {
         "Carens",
         "Carens Clavis",
         "Syros",
-        "Carnival",
-        "Sorento"
+        "Carnival"
     ],
 
-    "MG": [
+    "MG Motor": [
         "Comet EV",
         "Windsor EV",
         "Astor",
         "Hector",
         "Hector Plus",
         "ZS EV",
-        "Gloster",
-        "Majestor"
+        "Gloster"
     ],
 
     "Renault": [
         "Kwid",
         "Triber",
-        "Kiger",
-        "Duster"
+        "Kiger"
     ],
 
     "Nissan": [
@@ -542,11 +514,9 @@ const carModels = {
     ],
 
     "Volkswagen": [
-        "Polo",
         "Virtus",
         "Taigun",
-        "Tiguan",
-        "T-Roc"
+        "Tiguan"
     ],
 
     "Skoda": [
@@ -554,8 +524,7 @@ const carModels = {
         "Kushaq",
         "Slavia",
         "Kodiaq",
-        "Superb",
-        "Octavia"
+        "Superb"
     ],
 
     "Jeep": [
@@ -569,19 +538,15 @@ const carModels = {
         "C3",
         "e-C3",
         "C3 Aircross",
-        "C3 Aircross X",
         "C5 Aircross",
-        "Basalt",
-        "Basalt X"
+        "Basalt"
     ],
 
     "BYD": [
         "Atto 3",
         "Seal",
         "eMAX 7",
-        "Sealion 7",
-        "Sealion 6",
-        "Yangwang U8"
+        "Sealion 7"
     ],
 
     "VinFast": [
@@ -745,24 +710,16 @@ const carModels = {
     "Other": [
         "Other / Different Model"
     ]
-
 };
 
 
 /* ================================
-   BRAND CHANGE
+   CAR BRAND → MODEL
 ================================ */
 
-const carBrand =
-    document.getElementById("carBrand");
+carBrand.onchange = function () {
 
-const carModel =
-    document.getElementById("carModel");
-
-
-carBrand.addEventListener("change", function () {
-
-    const brand = this.value;
+    const brand = carBrand.value;
 
     carModel.innerHTML = "";
 
@@ -776,26 +733,17 @@ carBrand.addEventListener("change", function () {
         return;
     }
 
-
     carModel.disabled = false;
 
-
-    const firstOption =
-        document.createElement("option");
-
-    firstOption.value = "";
-
-    firstOption.textContent =
-        "Choose " + brand + " model";
-
-    carModel.appendChild(firstOption);
-
+    carModel.innerHTML =
+        '<option value="">Choose ' +
+        brand +
+        ' model</option>';
 
     const models =
         carModels[brand] || [
             "Other / Different Model"
         ];
-
 
     models.forEach(function (model) {
 
@@ -810,44 +758,41 @@ carBrand.addEventListener("change", function () {
 
     });
 
-});
+};
 
 
 /* ================================
-   SERVICE SELECTION
+   SERVICE
 ================================ */
 
 document
-    .querySelectorAll(".service")
-    .forEach(function (b) {
+.querySelectorAll(".service")
+.forEach(function (button) {
 
-        b.onclick = function (e) {
+    button.onclick = function (e) {
 
-            e.preventDefault();
+        e.preventDefault();
 
-            document
-                .querySelectorAll(".service")
-                .forEach(function (x) {
-                    x.classList.remove("active");
-                });
+        document
+        .querySelectorAll(".service")
+        .forEach(function (item) {
 
-            b.classList.add("active");
+            item.classList.remove("active");
 
-            service = b.dataset.s;
-        };
+        });
 
-    });
+        button.classList.add("active");
+
+        service = button.dataset.s;
+
+    };
+
+});
 
 
 /* ================================
    DESCRIPTION COUNTER
 ================================ */
-
-const desc =
-    document.getElementById("desc");
-
-const cnt =
-    document.getElementById("cnt");
 
 desc.oninput = function () {
 
@@ -858,261 +803,213 @@ desc.oninput = function () {
 
 
 /* ================================
-   STATUS MESSAGE
+   STATUS
 ================================ */
 
 function msg(t, ok) {
 
-    const status =
-        document.getElementById("status");
-
     status.textContent = t;
 
     status.className =
-        "status " + (ok ? "success" : "error");
+        "status " +
+        (ok ? "success" : "error");
 
 }
 
 
 /* ================================
-   SEND ENQUIRY
+   SUBMIT
 ================================ */
 
-document
-    .getElementById("send")
-    .onclick = async function () {
+send.onclick = async function () {
 
-        const brand =
-            carBrand.value;
+    const brand =
+        carBrand.value;
 
-        const model =
-            carModel.value;
+    const model =
+        carModel.value;
 
-        const mobile =
-            document
-                .getElementById("mobile")
-                .value
-                .trim();
+    const c =
+        brand + " - " + model;
 
-        const description =
-            desc.value.trim();
+    const m =
+        mobile.value.trim();
 
-        const photoInput =
-            document.getElementById("photo");
+    const d =
+        desc.value.trim();
 
-        const photo =
-            photoInput.files[0];
+    const p =
+        photo.files[0];
 
 
-        /* Validate brand */
+    if (!brand) {
 
-        if (!brand) {
+        return msg(
+            "Please select your car brand.",
+            false
+        );
 
-            return msg(
-                "Please select your car brand.",
-                false
-            );
-
-        }
+    }
 
 
-        /* Validate model */
+    if (!model) {
 
-        if (!model) {
+        return msg(
+            "Please select your car model.",
+            false
+        );
 
-            return msg(
-                "Please select your car model.",
-                false
-            );
-
-        }
+    }
 
 
-        /* Validate service */
+    if (!service) {
 
-        if (!service) {
+        return msg(
+            "Please select a service.",
+            false
+        );
 
-            return msg(
-                "Please select a service.",
-                false
-            );
-
-        }
+    }
 
 
-        /* Validate mobile */
+    if (!/^[6-9]\d{9}$/.test(m)) {
 
-        if (!/^[6-9]\d{9}$/.test(mobile)) {
+        return msg(
+            "Please enter a valid 10-digit Indian mobile number.",
+            false
+        );
 
-            return msg(
-                "Please enter a valid 10-digit Indian mobile number.",
-                false
-            );
-
-        }
+    }
 
 
-        /* Validate description */
+    if (!d) {
 
-        if (!description) {
+        return msg(
+            "Please describe the damage.",
+            false
+        );
 
-            return msg(
-                "Please describe the damage.",
-                false
-            );
-
-        }
+    }
 
 
-        const sendButton =
-            document.getElementById("send");
+    send.disabled = true;
 
-        sendButton.disabled = true;
-
-        sendButton.textContent =
-            "Sending...";
+    send.textContent =
+        "Sending...";
 
 
-        try {
+    try {
 
-            /*
-             * Keep the backend field name carModel.
-             *
-             * It will now contain:
-             *
-             * Maruti Suzuki - WagonR
-             */
+        /*
+         * IMPORTANT:
+         * This remains JSON.
+         * NO FormData.
+         */
 
-            const selectedCar =
-                brand + " - " + model;
+        let r = await fetch(
+            "/api/queries",
+            {
+                method: "POST",
 
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
 
-            const formData =
-                new FormData();
+                body: JSON.stringify({
 
-            formData.append(
-                "carModel",
-                selectedCar
-            );
+                    carModel: c,
 
-            formData.append(
-                "serviceType",
-                service
-            );
+                    serviceType:
+                        service,
 
-            formData.append(
-                "mobileNumber",
-                mobile
-            );
+                    mobileNumber:
+                        m,
 
-            formData.append(
-                "description",
-                description
-            );
+                    description:
+                        d,
 
+                    photoName:
+                        p ? p.name : ""
 
-            /*
-             * Keep photo filename behavior
-             * compatible with your current backend.
-             *
-             * Actual photo upload can be added later.
-             */
-
-            if (photo) {
-
-                formData.append(
-                    "photoName",
-                    photo.name
-                );
-
+                })
             }
+        );
 
 
-            /*
-             * IMPORTANT:
-             *
-             * Do NOT set Content-Type manually.
-             *
-             * Browser automatically sets multipart/form-data
-             * with the required boundary.
-             */
-
-            const response =
-                await fetch(
-                    "/api/queries",
-                    {
-                        method: "POST",
-                        body: formData
-                    }
-                );
+        let x =
+            await r.json();
 
 
-            const result =
-                await response.json();
+        if (!r.ok) {
 
-
-            if (!response.ok) {
-
-                throw new Error(
-                    result.message ||
-                    "Unable to submit enquiry"
-                );
-
-            }
-
-
-            msg(
-                "✓ Enquiry submitted successfully. We will contact you soon.",
-                true
+            throw Error(
+                x.message ||
+                "Unable to submit enquiry"
             );
-
-
-            /* Reset form */
-
-            carBrand.value = "";
-
-            carModel.innerHTML =
-                '<option value="">First choose car brand</option>';
-
-            carModel.disabled = true;
-
-            document
-                .getElementById("mobile")
-                .value = "";
-
-            desc.value = "";
-
-            photoInput.value = "";
-
-            cnt.textContent = "0";
-
-
-            document
-                .querySelectorAll(".service")
-                .forEach(function (x) {
-                    x.classList.remove("active");
-                });
-
-            service = "";
-
-
-        } catch (e) {
-
-            msg(
-                e.message,
-                false
-            );
-
-        } finally {
-
-            sendButton.disabled = false;
-
-            sendButton.textContent =
-                "Send Enquiry";
 
         }
 
-    };
+
+        msg(
+            "✓ Enquiry submitted successfully. We will contact you soon.",
+            true
+        );
+
+
+        /* Reset brand */
+
+        carBrand.value = "";
+
+
+        /* Reset model */
+
+        carModel.innerHTML =
+            '<option value="">First choose car brand</option>';
+
+        carModel.disabled = true;
+
+
+        /* Reset other fields */
+
+        mobile.value = "";
+
+        desc.value = "";
+
+        photo.value = "";
+
+        cnt.textContent = "0";
+
+
+        document
+        .querySelectorAll(".service")
+        .forEach(function (item) {
+
+            item.classList.remove("active");
+
+        });
+
+
+        service = "";
+
+
+    } catch (e) {
+
+        msg(
+            e.message,
+            false
+        );
+
+    } finally {
+
+        send.disabled = false;
+
+        send.textContent =
+            "Send Enquiry";
+
+    }
+
+};
 
 </script>
 
